@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project2</title>
+    <link rel="stylesheet" href="style.css">
+<style>
+    body {
+    background-color: silver;
+    text-align: center;
+}
+* { 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.battery {
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    height: 199px; 
+    border-radius: 6px;
+    width: 500px; 
+    position: absolute;
+    left: 0px;
+    border: 1px solid grey;
+
+
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+    margin-top: 200px;
+    position: relative;
+}
+.outside {
+    border-radius: 6px;
+    border: 2px solid rgb(54, 52, 52);
+    width: 500px;
+    height: 200px;
+    box-shadow: 2px 2px 2px 2px grey;
+    margin : auto; 
+
+    position: relative;
+}
+
+.nob {
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    position: absolute;
+    background-color: rgb(54, 52, 52);
+    width: 30px;
+    height: 100px;
+    top: 50px;
+    left: 500px;
+    border: 2px solid rgb(54, 52, 52);
+
+}
+#text65 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(54, 52, 52);
+}
+</style>
+</head>
+
+<body>
+    <h1> Battery API Project </h1>
+
+
+    <div class="center">
+        <div class="outside">
+            <div class="battery" id="battery">
+                <div class="nob">
+
+                </div>
+
+            </div>
+
+
+            </section>
+
+        </div>
+
+        <h1 id="text65">
+            <p> Your system current battery level is: <span id="text2"></span>%</p>
+        </h1>
+    </div>
+
+
+
+</body>
+
+<script>
+    var batterylevel;
+    navigator.getBattery().then(function (battery) {
+        console.log(battery.level);
+        battery100 = (battery.level) * 100;
+        battery500 = (battery.level) * 500;
+        console.log(battery100);
+        document.getElementById("text2").innerText = Math.floor(battery100); //Math.floor rounds up the number, it removes excess decimal places.
+
+        document.getElementById("battery").style.width = battery500+"px";
+        if(battery500<50) {
+            document.getElementById("battery").style.backgroundColor = "red";
+        }else if(battery500<150){
+            document.getElementById("battery").style.backgroundColor = "orange";
+        }else{
+            document.getElementById("battery").style.backgroundColor = "lime";
+        }
+    });
+</script>
+
+
+
+
+
+</html>
